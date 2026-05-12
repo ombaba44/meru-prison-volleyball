@@ -10,6 +10,7 @@ import Gallery from './pages/Gallery';
 import NewsEvents from './pages/NewsEvents';
 import Contact from './pages/Contact';
 import HowToRun from './pages/HowToRun';
+import AdminPlaceholder from './pages/AdminPlaceholder';
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
           <Route path="/news" element={<NewsEvents />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/how-to-run" element={<HowToRun />} />
+          <Route path="/admin" element={<AdminPlaceholder />} />
+          <Route path="/admin/dashboard" element={<AdminPlaceholder />} />
         </Route>
       </Routes>
     </Router>

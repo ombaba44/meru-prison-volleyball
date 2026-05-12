@@ -42,7 +42,7 @@ export default function MentalHealth() {
               </div>
               <div className="space-y-6">
                 <div className="flex items-center gap-4 text-white">
-                  <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-brand-orange text-xl"><FaWalking /></div>
+                  <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-brand-gold text-xl"><FaWalking /></div>
                   <div>
                     <div className="font-bold text-xl">42 KM</div>
                     <div className="text-sm text-gray-400">Distance Covered</div>

@@ -44,7 +44,7 @@ export default function Community() {
                 We regularly host free volleyball clinics for local youth in Meru. These sessions are designed to teach fundamentals of the sport while instilling discipline and teamwork.
               </p>
               <div className="flex gap-4">
-                <span className="glass px-4 py-2 rounded-full text-sm text-brand-orange">Sports</span>
+                <span className="glass px-4 py-2 rounded-full text-sm text-brand-gold">Sports</span>
                 <span className="glass px-4 py-2 rounded-full text-sm text-white">Education</span>
               </div>
             </motion.div>

@@ -20,17 +20,17 @@ export default function Contact() {
             <form className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Name</label>
-                <input type="text" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-orange" placeholder="Your Name" />
+                <input type="text" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold" placeholder="Your Name" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                <input type="email" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-orange" placeholder="your@email.com" />
+                <input type="email" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold" placeholder="your@email.com" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                <textarea rows="5" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-orange" placeholder="How can we help?"></textarea>
+                <textarea rows="5" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-gold" placeholder="How can we help?"></textarea>
               </div>
-              <button className="w-full bg-brand-orange hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg transition-colors">
+              <button className="w-full bg-brand-green hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-colors">
                 Send Message
               </button>
             </form>

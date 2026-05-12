@@ -26,14 +26,14 @@ export default function NewsEvents() {
               className="glass-card p-8 flex flex-col md:flex-row gap-8 items-center"
             >
               <div className="w-full md:w-48 shrink-0 text-center md:text-left">
-                <div className="text-brand-orange font-bold">{event.date}</div>
+                <div className="text-brand-gold font-bold">{event.date}</div>
               </div>
               <div className="flex-grow text-center md:text-left">
                 <h3 className="text-2xl font-bold text-white mb-2">{event.title}</h3>
                 <p className="text-gray-400">{event.description}</p>
               </div>
               <div className="shrink-0">
-                <button className="px-6 py-2 border border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white rounded-full transition-colors">
+                <button className="px-6 py-2 border border-brand-gold text-brand-gold hover:bg-brand-green hover:text-white rounded-full transition-colors">
                   Read More
                 </button>
               </div>

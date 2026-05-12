@@ -21,7 +21,7 @@ export default function About() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <h2 className="text-3xl font-bold text-brand-orange mb-6">Our History</h2>
+            <h2 className="text-3xl font-bold text-brand-gold mb-6">Our History</h2>
             <p className="text-gray-300 text-lg mb-6">
               Founded within the walls of Meru Prison, the volleyball team started as a small initiative to provide inmates with an outlet for physical activity and teamwork.
             </p>
@@ -45,7 +45,7 @@ export default function About() {
                 { title: "Discipline", desc: "Fostering focus and dedication on and off the court." },
               ].map((val, i) => (
                 <li key={i} className="flex gap-4">
-                  <div className="w-2 h-2 mt-2 rounded-full bg-brand-orange shrink-0" />
+                  <div className="w-2 h-2 mt-2 rounded-full bg-brand-green shrink-0" />
                   <div>
                     <h3 className="text-white font-bold">{val.title}</h3>
                     <p className="text-gray-400">{val.desc}</p>

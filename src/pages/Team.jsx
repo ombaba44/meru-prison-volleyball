@@ -30,7 +30,7 @@ export default function Team() {
                 <div className="absolute bottom-4 left-4 z-20">
                   <div className="text-5xl font-bold text-white/20 absolute -top-8 -left-2">{player.number}</div>
                   <h3 className="text-2xl font-bold text-white relative z-10">{player.name}</h3>
-                  <p className="text-brand-orange font-medium">{player.position}</p>
+                  <p className="text-brand-gold font-medium">{player.position}</p>
                 </div>
               </div>
               <div className="p-6">

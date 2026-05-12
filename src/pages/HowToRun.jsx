@@ -24,7 +24,7 @@ export default function HowToRun() {
             </ul>
           </section>
 
-          <section className="glass-card p-8 border-l-4 border-brand-orange">
+          <section className="glass-card p-8 border-l-4 border-brand-gold">
             <h2 className="text-2xl font-bold text-white mb-4">2. Setup & Installation</h2>
             <p className="mb-4">Open your terminal and navigate to the project directory, then run:</p>
             <div className="bg-black/50 p-4 rounded-md font-mono text-brand-gold mb-4">
