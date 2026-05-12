@@ -123,6 +123,27 @@ export default function Home() {
             <p className="text-xl text-gray-300 mb-10 leading-relaxed">
               A grueling walk from Meru Town to Isiolo to break the stigma, build resilience, and champion healing through sports.
             </p>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+              <div className="group relative overflow-hidden rounded-2xl aspect-video border border-white/10 shadow-2xl">
+                <img src={Images.campaigns.magunasWalk} alt="Meeting at Magunas" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 text-left">
+                  <p className="text-brand-gold text-sm font-bold tracking-widest uppercase mb-1">Starting Point</p>
+                  <p className="text-white font-medium">Meeting at Magunas for the Walk</p>
+                </div>
+              </div>
+              
+              <div className="group relative overflow-hidden rounded-2xl aspect-video border border-white/10 shadow-2xl md:mt-12">
+                <img src={Images.campaigns.isioloWalk} alt="Final Destination Isiolo" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 text-left">
+                  <p className="text-brand-gold text-sm font-bold tracking-widest uppercase mb-1">The Goal</p>
+                  <p className="text-white font-medium">Final Destination: Isiolo</p>
+                </div>
+              </div>
+            </div>
+
             <Link to="/campaigns" className="inline-block bg-brand-gold hover:bg-yellow-500 text-brand-dark px-8 py-4 rounded-full font-bold transition-all shadow-lg shadow-brand-gold/30">
               Explore The Campaign
             </Link>

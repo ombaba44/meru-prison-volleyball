@@ -34,7 +34,7 @@ export default function MentalHealth() {
             <div className="grid md:grid-cols-3 gap-8">
               <div className="md:col-span-2">
                 <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-                  Our biggest initiative yet. The team, alongside community members, walked 42 kilometers to raise awareness for mental health. The journey was symbolic of the long, often difficult road to mental wellness, emphasizing that nobody has to walk it alone.
+                  Our biggest initiative yet. The club, alongside community members, walked 42 kilometers to raise awareness for mental health. The journey was symbolic of the long, often difficult road to mental wellness, emphasizing that nobody has to walk it alone.
                 </p>
                 <p className="text-gray-300 text-lg leading-relaxed">
                   Along the route, we engaged with locals, distributed informational pamphlets, and shared stories of resilience and recovery.

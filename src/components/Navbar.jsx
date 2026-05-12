@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { Images } from '../data/images';
+import { useSettingsStore } from '../admin/store';
 
 const links = [
   { name: 'Home', path: '/' },
@@ -18,6 +19,11 @@ const links = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { settings, fetchSettings } = useSettingsStore();
+
+  useEffect(() => {
+    fetchSettings();
+  }, [fetchSettings]);
 
   return (
     <nav className="fixed w-full z-50 glass border-b-0 border-white/10 shadow-md shadow-brand-dark/20 backdrop-blur-lg transition-all">
@@ -25,12 +31,15 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center gap-3 group">
             <img 
-              src={Images.logos.teamLogo} 
-              alt="Meru Prison Volleyball Logo" 
-              className="w-12 h-12 rounded-full object-cover shadow-lg shadow-brand-gold/20 border-2 border-brand-green group-hover:scale-105 transition-transform" 
+              src={settings?.logo_url || Images.logos.teamLogo} 
+              alt="Club Logo" 
+              className="w-12 h-12 rounded-full object-contain bg-white shadow-lg shadow-brand-gold/20 border-2 border-brand-green group-hover:scale-105 transition-transform" 
             />
             <span className="font-bold text-xl tracking-tight text-white hidden sm:block">
-              Meru Prison<br/><span className="text-brand-gold text-sm transition-colors">Volleyball Team</span>
+              {settings?.club_name?.split(' ')[0]} {settings?.club_name?.split(' ')[1]}<br/>
+              <span className="text-brand-gold text-sm transition-colors">
+                {settings?.club_name?.split(' ').slice(2).join(' ') || 'Volleyball Club'}
+              </span>
             </span>
           </Link>
 
@@ -62,30 +71,33 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden glass absolute top-20 left-0 w-full border-t border-white/10"
-        >
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {links.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  location.pathname === link.path
-                    ? 'text-brand-gold bg-white/10'
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-brand-dark/95 backdrop-blur-xl absolute top-20 left-0 w-full border-t border-white/10 shadow-2xl overflow-hidden"
+          >
+            <div className="px-4 pt-4 pb-6 space-y-2">
+              {links.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                    location.pathname === link.path
+                      ? 'text-brand-dark bg-brand-gold'
+                      : 'text-gray-300 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

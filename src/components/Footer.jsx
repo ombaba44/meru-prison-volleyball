@@ -1,8 +1,16 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaInstagram, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import { Images } from '../data/images';
+import { useSettingsStore } from '../admin/store';
 
 export default function Footer() {
+  const { settings, fetchSettings } = useSettingsStore();
+
+  useEffect(() => {
+    fetchSettings();
+  }, [fetchSettings]);
+
   return (
     <footer className="bg-brand-dark border-t border-white/10 pt-16 pb-8 text-gray-300 relative overflow-hidden">
       <div className="absolute right-0 bottom-0 w-1/3 h-1/2 bg-brand-green/5 blur-[120px] pointer-events-none" />
@@ -11,8 +19,12 @@ export default function Footer() {
           
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <img src={Images.logos.prisonEmblem} alt="Kenya Prison Emblem" className="w-12 h-12 rounded-full shadow-lg shadow-brand-gold/20" />
-              <span className="font-bold text-xl text-white">Meru Prison Volleyball</span>
+              <img 
+                src={settings?.logo_url || Images.logos.prisonEmblem} 
+                alt="Club Logo" 
+                className="w-12 h-12 rounded-full object-contain bg-white shadow-lg shadow-brand-gold/20" 
+              />
+              <span className="font-bold text-xl text-white">{settings?.club_name || 'Meru Prison Stars'}</span>
             </div>
             <p className="text-sm leading-relaxed mb-6">
               Building champions beyond the court. We believe in rehabilitation through sports, mental health advocacy, and community outreach.
@@ -28,7 +40,7 @@ export default function Footer() {
             <h3 className="text-white font-bold text-lg mb-6">Quick Links</h3>
             <ul className="space-y-3">
               <li><Link to="/about" className="hover:text-brand-gold transition-colors">About Us</Link></li>
-              <li><Link to="/team" className="hover:text-brand-gold transition-colors">Our Team</Link></li>
+              <li><Link to="/team" className="hover:text-brand-gold transition-colors">Our Club</Link></li>
               <li><Link to="/campaigns" className="hover:text-brand-gold transition-colors">Mental Health Walk</Link></li>
               <li><Link to="/donate" className="hover:text-brand-gold transition-colors">Donate Now</Link></li>
               <li><Link to="/how-to-run" className="text-brand-green hover:text-white transition-colors text-sm">Dev: How To Run</Link></li>
@@ -56,7 +68,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-white/10 pt-8 text-sm text-center flex flex-col md:flex-row justify-between items-center">
-          <p>&copy; {new Date().getFullYear()} Meru Prison Volleyball Team. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {settings?.club_name || 'Meru Prison Stars'}. All rights reserved.</p>
           <p className="mt-2 md:mt-0 text-gray-500 text-xs">Empowering the youth of Kenya.</p>
         </div>
       </div>

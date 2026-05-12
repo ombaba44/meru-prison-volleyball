@@ -11,7 +11,7 @@ export default function HowToRun() {
         >
           <h1 className="text-4xl md:text-6xl font-bold text-brand-blue mb-6">How To Run This Project</h1>
           <p className="text-xl text-gray-300">
-            Developer guide for setting up, running, and deploying the Meru Prison Volleyball Team website.
+            Developer guide for setting up, running, and deploying the Meru Prison Stars website.
           </p>
         </motion.div>
 

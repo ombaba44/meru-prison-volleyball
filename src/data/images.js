@@ -1,4 +1,7 @@
 // src/data/images.js
+import kithokaImg from '../assets/kithoka-outreach.jpeg';
+import magunasWalkImg from '../assets/magunas-walk.jpeg';
+import isioloWalkImg from '../assets/isiolo-destination.jpeg';
 
 // Centralized image structure. Update paths here when real assets are added.
 export const Images = {
@@ -18,11 +21,13 @@ export const Images = {
     { id: 3, src: 'https://placehold.co/400x500/1e293b/white?text=Player+3' },
   ],
   outreach: {
-    kithoka: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    kithoka: kithokaImg,
     clinic: 'https://placehold.co/800x450/1e293b/white?text=Volleyball+Clinic',
   },
   campaigns: {
     mentalHealthWalk: 'https://placehold.co/1200x600/1a472a/white?text=42KM+Mental+Health+Walk',
+    magunasWalk: magunasWalkImg,
+    isioloWalk: isioloWalkImg,
   },
   gallery: [
     { id: 1, category: 'Matches', src: 'https://placehold.co/600x600/1e293b/white?text=Match+1' },

@@ -23,7 +23,7 @@ export default function About() {
           >
             <h2 className="text-3xl font-bold text-brand-gold mb-6">Our History</h2>
             <p className="text-gray-300 text-lg mb-6">
-              Founded within the walls of Meru Prison, the volleyball team started as a small initiative to provide inmates with an outlet for physical activity and teamwork.
+              Founded within the walls of Meru Prison, the volleyball club started as a small initiative to provide inmates with an outlet for physical activity and teamwork.
             </p>
             <p className="text-gray-300 text-lg mb-6">
               Over the years, it has grown into a beacon of hope, demonstrating that rehabilitation is possible and that sports can heal the mind and soul.
