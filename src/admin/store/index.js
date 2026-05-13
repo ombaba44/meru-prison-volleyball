@@ -159,3 +159,44 @@ export const useSettingsStore = create((set) => ({
     } catch (e) { console.error(e); }
   }
 }));
+
+export const useStaffStore = create((set) => ({
+  staff: [],
+  fetchStaff: async () => {
+    try {
+      const { data, error } = await supabase.from('staff').select('*').order('created_at', { ascending: true });
+      if (error) {
+        console.error('fetchStaff error:', error);
+      } else if (data) {
+        set({ staff: data });
+      }
+    } catch (e) { console.error('fetchStaff catch:', e); }
+  },
+  addStaff: async (member) => {
+    const { data, error } = await supabase.from('staff').insert([member]).select();
+    if (error) {
+      console.error('addStaff error:', error);
+      alert('Error saving staff member to database: ' + error.message);
+    } else if (data) {
+      set((state) => ({ staff: [...state.staff, data[0]] }));
+    }
+  },
+  updateStaff: async (id, updatedMember) => {
+    const { data, error } = await supabase.from('staff').update(updatedMember).eq('id', id).select();
+    if (error) {
+      console.error('updateStaff error:', error);
+      alert('Error updating staff member in database: ' + error.message);
+    } else if (data) {
+      set((state) => ({ staff: state.staff.map((s) => s.id === id ? data[0] : s) }));
+    }
+  },
+  deleteStaff: async (id) => {
+    const { error } = await supabase.from('staff').delete().eq('id', id);
+    if (error) {
+      console.error('deleteStaff error:', error);
+      alert('Error deleting staff member from database: ' + error.message);
+    } else {
+      set((state) => ({ staff: state.staff.filter((s) => s.id !== id) }));
+    }
+  }
+}));

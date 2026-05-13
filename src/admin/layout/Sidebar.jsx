@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HiHome, HiUsers, HiPhotograph, HiHeart, HiCalendar, HiCurrencyDollar, HiX, HiLogout, HiCog } from 'react-icons/hi';
+import { HiHome, HiUsers, HiPhotograph, HiHeart, HiCalendar, HiCurrencyDollar, HiX, HiLogout, HiCog, HiIdentification } from 'react-icons/hi';
 import { Images } from '../../data/images';
 import { useAuth } from '../../hooks/useAuth';
 import { useSettingsStore } from '../store';
@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 const navItems = [
   { name: 'Dashboard', path: '/admin', icon: HiHome },
   { name: 'Players', path: '/admin/players', icon: HiUsers },
+  { name: 'Staff', path: '/admin/staff', icon: HiIdentification },
   { name: 'Gallery', path: '/admin/gallery', icon: HiPhotograph },
   { name: 'Outreach', path: '/admin/outreach', icon: HiHeart },
   { name: 'Events', path: '/admin/events', icon: HiCalendar },

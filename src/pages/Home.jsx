@@ -25,7 +25,7 @@ export default function Home() {
               Meru Prison Stars
             </div>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
-              Building Champions<br/><span className="text-brand-gold">Beyond the Court</span>
+              Meru Prison Stars<br/><span className="text-brand-gold">Volleyball Club</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 mb-10 leading-relaxed max-w-3xl mx-auto drop-shadow-lg font-medium">
               Rehabilitation through sports, championing mental health awareness, and empowering the youth in Meru, Kenya.

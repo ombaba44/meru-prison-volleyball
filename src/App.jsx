@@ -20,6 +20,7 @@ import AdminEvents from './admin/pages/Events';
 import AdminDonations from './admin/pages/Donations';
 import Settings from './admin/pages/Settings';
 import Login from './admin/pages/Login';
+import AdminStaff from './admin/pages/Staff';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="players" element={<AdminPlayers />} />
+          <Route path="staff" element={<AdminStaff />} />
           <Route path="gallery" element={<AdminGallery />} />
           <Route path="outreach" element={<AdminOutreach />} />
           <Route path="events" element={<AdminEvents />} />

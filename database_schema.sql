@@ -113,3 +113,20 @@ CREATE POLICY "Allow auth all on gallery_events" ON public.gallery_events FOR AL
 -- Run this carefully to avoid dropping existing gallery items
 ALTER TABLE public.gallery ADD COLUMN IF NOT EXISTS event_id uuid REFERENCES public.gallery_events(id) ON DELETE CASCADE;
 ALTER TABLE public.gallery ADD COLUMN IF NOT EXISTS caption text;
+
+-- NEW STAFF TABLE
+CREATE TABLE public.staff (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  name text NOT NULL,
+  role text,
+  department text,
+  image_url text,
+  bio text,
+  experience text,
+  category text,
+  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+ALTER TABLE public.staff ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public read access on staff" ON public.staff FOR SELECT USING (true);
+CREATE POLICY "Allow auth all on staff" ON public.staff FOR ALL USING (auth.role() = 'authenticated');
