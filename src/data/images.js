@@ -2,12 +2,12 @@
 import kithokaImg from '../assets/kithoka-outreach.jpeg';
 import magunasWalkImg from '../assets/magunas-walk.jpeg';
 import isioloWalkImg from '../assets/isiolo-destination.jpeg';
+import heroBgImg from '../assets/hero-background.jpeg';
 
 // Centralized image structure. Update paths here when real assets are added.
 export const Images = {
   hero: {
-    // Preserve the Mikasa volleyball background aesthetic from the original homepage
-    main: 'https://images.unsplash.com/photo-1592656094267-764a45160876?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+    main: heroBgImg,
   },
   logos: {
     // Placeholder links for Kenya Prison & Meru Prison VB

@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../lib/supabaseClient';
-import { HiX, HiPhotograph, HiCalendar } from 'react-icons/hi';
+import { HiX, HiPhotograph, HiCalendar, HiLocationMarker } from 'react-icons/hi';
 
 const EventStackCard = ({ event, onClick }) => {
   const images = event.images.slice(0, 5);
-  const heroImage = images[0];
   const backgroundImages = images.slice(1);
 
   return (
@@ -44,16 +43,21 @@ const EventStackCard = ({ event, onClick }) => {
           }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
-          <img src={heroImage.image_url} alt={heroImage.title} className="w-full h-full object-cover" />
+          <img src={event.cover_image} alt={event.title} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6 text-left">
-            <div className="flex items-center gap-3 mb-3">
+            <div className="flex flex-wrap items-center gap-3 mb-3">
               <span className="bg-brand-gold text-brand-dark px-3 py-1 text-xs font-bold rounded-full uppercase tracking-wider flex items-center gap-1">
                 <HiPhotograph size={14} /> {event.images.length} Photos
               </span>
-              {event.date && (
+              {event.event_date && (
                 <span className="text-gray-300 text-xs font-medium flex items-center gap-1">
-                  <HiCalendar size={14} /> {new Date(event.date).toLocaleDateString()}
+                  <HiCalendar size={14} /> {new Date(event.event_date).toLocaleDateString()}
+                </span>
+              )}
+              {event.location && (
+                <span className="text-gray-300 text-xs font-medium flex items-center gap-1">
+                  <HiLocationMarker size={14} /> {event.location}
                 </span>
               )}
             </div>
@@ -72,33 +76,44 @@ export default function Gallery() {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
-    const fetchGallery = async () => {
+    const fetchGalleryData = async () => {
       try {
-        const { data, error } = await supabase
-          .from('gallery')
-          .select('*')
-          .order('created_at', { ascending: false });
-          
-        if (error) throw error;
-        
-        if (data) {
-          const grouped = data.reduce((acc, img) => {
-            const cat = img.category || 'Uncategorized';
-            if (!acc[cat]) acc[cat] = [];
-            acc[cat].push(img);
-            return acc;
-          }, {});
+        const [eventsRes, galleryRes] = await Promise.all([
+          supabase.from('gallery_events').select('*').order('created_at', { ascending: false }),
+          supabase.from('gallery').select('*').order('created_at', { ascending: false })
+        ]);
 
-          const eventList = Object.entries(grouped).map(([category, images]) => ({
-            id: category,
-            title: category,
-            images: images,
-            date: images[0].created_at,
-            description: images[0].title || `A collection of moments from ${category}.`,
-          }));
+        if (eventsRes.error) throw eventsRes.error;
+        if (galleryRes.error) throw galleryRes.error;
 
-          setEvents(eventList);
+        const allEvents = [];
+        const rawEvents = eventsRes.data || [];
+        const rawPhotos = galleryRes.data || [];
+
+        // Build actual events
+        for (const ev of rawEvents) {
+          const eventPhotos = rawPhotos.filter(p => p.event_id === ev.id);
+          allEvents.push({
+            ...ev,
+            images: eventPhotos
+          });
         }
+
+        // Build General Gallery from orphaned/legacy photos
+        const orphanedPhotos = rawPhotos.filter(p => !p.event_id);
+        if (orphanedPhotos.length > 0) {
+          allEvents.push({
+            id: 'general-gallery',
+            title: 'General Gallery',
+            description: 'A collection of moments captured on the court and in the community.',
+            cover_image: orphanedPhotos[0].image_url,
+            event_date: null,
+            location: 'Meru, Kenya',
+            images: orphanedPhotos
+          });
+        }
+
+        setEvents(allEvents);
       } catch (error) {
         console.error('Error fetching gallery:', error.message);
       } finally {
@@ -106,7 +121,7 @@ export default function Gallery() {
       }
     };
 
-    fetchGallery();
+    fetchGalleryData();
   }, []);
 
   return (
@@ -194,8 +209,8 @@ export default function Gallery() {
                         className="w-full h-full object-cover" 
                       />
                     </div>
-                    {img.title && (
-                      <p className="text-gray-300 text-center text-lg">{img.title}</p>
+                    {(img.caption || img.title) && (
+                      <p className="text-gray-300 text-center text-lg">{img.caption || img.title}</p>
                     )}
                   </motion.div>
                 ))}

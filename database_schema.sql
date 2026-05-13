@@ -92,3 +92,24 @@ ALTER TABLE public.settings ENABLE ROW LEVEL SECURITY;
 -- Create policies for public read access and admin full access
 CREATE POLICY "Allow public read access on settings" ON public.settings FOR SELECT USING (true);
 CREATE POLICY "Allow auth all on settings" ON public.settings FOR ALL USING (auth.role() = 'authenticated');
+
+-- Gallery Events Table
+CREATE TABLE public.gallery_events (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  title text NOT NULL,
+  description text,
+  cover_image text,
+  event_date date,
+  location text,
+  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Setup RLS (Row Level Security) for Gallery Events
+ALTER TABLE public.gallery_events ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public read access on gallery_events" ON public.gallery_events FOR SELECT USING (true);
+CREATE POLICY "Allow auth all on gallery_events" ON public.gallery_events FOR ALL USING (auth.role() = 'authenticated');
+
+-- Update Gallery Table for relationships
+-- Run this carefully to avoid dropping existing gallery items
+ALTER TABLE public.gallery ADD COLUMN IF NOT EXISTS event_id uuid REFERENCES public.gallery_events(id) ON DELETE CASCADE;
+ALTER TABLE public.gallery ADD COLUMN IF NOT EXISTS caption text;

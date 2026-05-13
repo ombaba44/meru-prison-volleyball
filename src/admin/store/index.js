@@ -27,18 +27,40 @@ export const usePlayersStore = create((set) => ({
   }
 }));
 
+export const useGalleryEventsStore = create((set) => ({
+  events: [],
+  fetchEvents: async () => {
+    try {
+      const { data, error } = await supabase.from('gallery_events').select('*').order('created_at', { ascending: false });
+      if (!error && data) set({ events: data });
+    } catch (e) { console.error(e); }
+  },
+  addEvent: async (event) => {
+    const { data, error } = await supabase.from('gallery_events').insert([event]).select();
+    if (!error && data) set((state) => ({ events: [data[0], ...state.events] }));
+  },
+  updateEvent: async (id, updatedEvent) => {
+    const { data, error } = await supabase.from('gallery_events').update(updatedEvent).eq('id', id).select();
+    if (!error && data) set((state) => ({ events: state.events.map((e) => e.id === id ? data[0] : e) }));
+  },
+  deleteEvent: async (id) => {
+    const { error } = await supabase.from('gallery_events').delete().eq('id', id);
+    if (!error) set((state) => ({ events: state.events.filter((e) => e.id !== id) }));
+  }
+}));
+
 export const useGalleryStore = create((set) => ({
   images: initialGallery,
   fetchGallery: async () => {
     try {
-      const { data, error } = await supabase.from('gallery').select('*');
+      const { data, error } = await supabase.from('gallery').select('*').order('created_at', { ascending: false });
       if (!error && data) set({ images: data.length > 0 ? data : initialGallery });
     } catch (e) { console.error(e); }
   },
   addImage: async (image) => {
     const { data, error } = await supabase.from('gallery').insert([image]).select();
-    if (!error && data) set((state) => ({ images: [...state.images, data[0]] }));
-    else set((state) => ({ images: [...state.images, { ...image, id: Date.now() }] }));
+    if (!error && data) set((state) => ({ images: [data[0], ...state.images] }));
+    else set((state) => ({ images: [{ ...image, id: Date.now() }, ...state.images] }));
   },
   deleteImage: async (id) => {
     const { error } = await supabase.from('gallery').delete().eq('id', id);

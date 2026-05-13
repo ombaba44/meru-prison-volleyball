@@ -7,34 +7,35 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative h-[90vh] flex items-center justify-center">
+      <section className="relative h-screen flex items-center justify-center">
         <div className="absolute inset-0 bg-brand-dark">
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/90 to-brand-dark/60 z-10" />
-          <div className="w-full h-full bg-slate-800 opacity-40 bg-cover bg-center" style={{ backgroundImage: `url(${Images.hero.main})` }} />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/60 to-transparent z-10" />
+          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="w-full h-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${Images.hero.main})` }} />
         </div>
         
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center flex flex-col items-center">
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-xl">
-              Building Champions <br/><span className="text-brand-gold">Beyond the Court</span>
+            <div className="inline-block px-4 py-1 glass border border-brand-gold/30 rounded-full text-brand-gold text-sm font-bold mb-6 uppercase tracking-widest backdrop-blur-md">
+              Meru Prison Stars
+            </div>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
+              Building Champions<br/><span className="text-brand-gold">Beyond the Court</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-10 text-lg leading-relaxed max-w-2xl drop-shadow-md">
+            <p className="text-xl md:text-2xl text-gray-200 mb-10 leading-relaxed max-w-3xl mx-auto drop-shadow-lg font-medium">
               Rehabilitation through sports, championing mental health awareness, and empowering the youth in Meru, Kenya.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/donate" className="bg-brand-green hover:bg-brand-lightGreen text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg shadow-brand-green/30">
-                Donate Now
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link to="/donate" className="bg-brand-green hover:bg-brand-lightGreen text-white px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:scale-105 text-lg">
+                Support the Team
               </Link>
-              <Link to="/team" className="glass hover:bg-white/10 text-white px-8 py-4 rounded-full font-bold transition-all">
-                Meet The Team
-              </Link>
-              <Link to="/contact" className="text-brand-gold px-8 py-4 rounded-full font-bold hover:text-white transition-colors flex items-center gap-2">
-                Join The Movement &rarr;
+              <Link to="/contact" className="glass hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-full font-bold transition-all hover:scale-105 backdrop-blur-md text-lg">
+                Join The Movement
               </Link>
             </div>
           </motion.div>
