@@ -70,21 +70,21 @@ export default function Home() {
       </section>
 
       {/* Kithoka Children's Home Highlight */}
-      <section className="py-24 bg-brand-accent/30 relative">
+      <section className="py-16 md:py-24 bg-brand-accent/30 relative">
         <div className="absolute left-0 top-0 w-1/3 h-full bg-brand-green/5 blur-[100px] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
               <h2 className="text-sm font-bold text-brand-gold uppercase tracking-widest mb-3">Giving Back to the Community</h2>
-              <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">Kithoka Children's Home Visit</h3>
-              <p className="text-gray-300 text-lg mb-6 leading-relaxed">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">Kithoka Children's Home Visit</h3>
+              <p className="text-gray-300 text-base sm:text-lg mb-6 leading-relaxed">
                 Beyond volleyball, we are committed to uplifting our community. Our recent visit to Kithoka Children's Home was filled with mentorship, donation of essential supplies, and playing games with the kids. 
               </p>
-              <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+              <p className="text-gray-300 text-base sm:text-lg mb-8 leading-relaxed">
                 We believe that spending time with these children, encouraging them, and showing them that they are loved is just as important as the items we donated.
               </p>
               <Link to="/community" className="text-brand-gold font-bold hover:text-white transition-colors flex items-center gap-2">
@@ -95,13 +95,13 @@ export default function Home() {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative mt-8 md:mt-0"
             >
-              <div className="aspect-square rounded-2xl overflow-hidden glass p-2">
+              <div className="aspect-square rounded-2xl overflow-hidden glass p-2 w-full max-w-sm sm:max-w-md mx-auto md:max-w-none">
                 <div className="w-full h-full bg-slate-800 rounded-xl bg-cover bg-center" style={{ backgroundImage: `url(${Images.outreach.kithoka})` }} />
               </div>
-              <div className="absolute -bottom-8 -left-8 glass-card p-6 max-w-xs border-l-4 border-l-brand-gold">
-                <p className="text-white italic">"The smiles on their faces are our greatest victory."</p>
+              <div className="absolute -bottom-4 -right-2 sm:-bottom-8 sm:-left-8 glass-card p-4 sm:p-6 max-w-[250px] sm:max-w-xs border-l-4 border-l-brand-gold">
+                <p className="text-white italic text-sm sm:text-base">"The smiles on their faces are our greatest victory."</p>
               </div>
             </motion.div>
           </div>

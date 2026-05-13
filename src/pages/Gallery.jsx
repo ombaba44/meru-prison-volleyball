@@ -137,8 +137,8 @@ export default function Gallery() {
           <div className="inline-block px-4 py-1 glass border border-brand-gold/30 rounded-full text-brand-gold text-sm font-bold mb-4 uppercase tracking-widest">
             Media Archive
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">Our Stories</h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6">Our Stories</h1>
+          <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
             Relive the moments that define us. From intense matches on the court to impactful outreach in the community.
           </p>
         </motion.div>
